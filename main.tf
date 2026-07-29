@@ -58,6 +58,7 @@ module "ansible_instance" {
 
   ami_id               = var.packer_ansible_ami
   iam_instance_profile = module.iam.iam_instance_profile_name
+  user_data = "/scripts/ansible_bootstrap.sh"
 }
 
 module "web_server_instance" {
