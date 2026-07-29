@@ -1,63 +1,57 @@
-resource "aws_iam_role" "this" {
-  name        = "${var.iam_name}-Role"
-  description = "IAM role for EC2 instance"
+data "aws_caller_identity" "current" {}
+
+resource "aws_iam_role" "ansible" {
+  name        = "ansible-controller-role"
+  description = "IAM role for Ansible controller EC2 instance"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
+
     Statement = [
-        {
-            Action = "sts:AssumeRole"
-            Principal = {
-                Service = "ec2.amazonaws.com"
-            }
-            Effect = "Allow"
+      {
+        Effect = "Allow"
+
+        Principal = {
+          Service = "ec2.amazonaws.com"
         }
+
+        Action = "sts:AssumeRole"
+      }
     ]
   })
 }
 
-resource "aws_iam_policy" "this" {
-  name        = "${var.iam_name}-Policy"
-  description = "IAM policy for EC2 instance"
+resource "aws_iam_policy" "read_oauth_parameters" {
+  name        = "ansible-read-oauth-parameters"
+  description = "Allows Ansible controller to read OAuth2 Proxy secrets from SSM"
 
   policy = jsonencode({
     Version = "2012-10-17"
 
     Statement = [
       {
-        Sid    = "ReadInitSqlFromS3"
+        Sid    = "ReadOAuthParameters"
         Effect = "Allow"
 
         Action = [
-          "s3:ListBucket",
-          "s3:GetObject"
+          "ssm:GetParameter"
         ]
 
         Resource = [
-          var.s3_bucket_arn,
-          "${var.s3_bucket_arn}/*"
+          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/oauth2/github-client-secret",
+          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/oauth2/cookie-secret"
         ]
-      },
-      {
-        Sid    = "ReadDatabaseSecret"
-        Effect = "Allow"
-
-        Action = [
-          "secretsmanager:GetSecretValue"
-        ]
-
-        Resource = var.secret_arns
       }
     ]
   })
 }
 
-resource "aws_iam_role_policy_attachment" "this" {
-  role       = aws_iam_role.this.name
-  policy_arn = aws_iam_policy.this.arn
+resource "aws_iam_role_policy_attachment" "ansible" {
+  role       = aws_iam_role.ansible.name
+  policy_arn = aws_iam_policy.read_oauth_parameters.arn
 }
 
-resource "aws_iam_instance_profile" "this" {
-  name = "${var.iam_name}-Profile"
-  role = aws_iam_role.this.name
+resource "aws_iam_instance_profile" "ansible" {
+  name = "ansible-controller-profile"
+  role = aws_iam_role.ansible.name
 }

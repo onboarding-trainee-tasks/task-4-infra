@@ -1,3 +1,20 @@
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
+variable "packer_ansible_ami" {
+  description = "ID of AMI created by Packer for Ansible Host"
+  type        = string
+  default     = "ami-07848b83243e0f076"
+}
+
 variable "allowed_cidr_blocks" {
   description = "A list of allowed CIDR blocks for the security group"
   type        = list(string)

@@ -44,6 +44,7 @@ variable "ami_id" {
 variable "iam_instance_profile" {
   description = "The IAM instance profile to associate with the instance"
   type        = string
+  default     = null
 }
 
 variable "user_data" {
@@ -56,4 +57,9 @@ variable "user_data_vars" {
   description = "Variables passed to the user_data template"
   type        = map(any)
   default     = {}
+}
+
+variable "private_ip" {
+  description = "Private IP of instance"
+  type        = string
 }
