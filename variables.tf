@@ -12,7 +12,7 @@ data "aws_ami" "ubuntu" {
 variable "packer_ansible_ami" {
   description = "ID of AMI created by Packer for Ansible Host"
   type        = string
-  default     = "ami-07848b83243e0f076"
+  default     = "ami-0fbd5f35bf4bff7b5"
 }
 
 variable "allowed_cidr_blocks" {
