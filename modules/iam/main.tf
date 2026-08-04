@@ -39,7 +39,12 @@ resource "aws_iam_policy" "read_oauth_parameters" {
 
         Resource = [
           "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/oauth2/github-client-secret",
-          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/oauth2/cookie-secret"
+          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/oauth2/gitlab-client-secret",
+          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/oauth2/cookie-secret",
+          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/oauth2/github-second-client-secret",
+          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/oauth2/github-second-cookie-secret",
+          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/keycloak/admin-password",
+          "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/task4/keycloak/oauth2-proxy-client-secret"
         ]
       }
     ]

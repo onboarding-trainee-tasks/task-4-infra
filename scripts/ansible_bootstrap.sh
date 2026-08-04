@@ -9,4 +9,5 @@ git pull
 
 sudo chown -R ubuntu:ubuntu /home/ubuntu/task-4-ansible
 
+# ansible-galaxy collection install -r requirements.yml
 # ansible-playbook -i inventory.ini playbook.yml

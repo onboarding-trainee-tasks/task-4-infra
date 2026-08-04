@@ -76,7 +76,7 @@ module "web_server_instance" {
   source = "./modules/instance"
 
   instance_name = "web_server"
-  instance_type = "t3.micro"
+  instance_type = "t3.small"
   volume_size   = 10
 
   subnet_id          = module.network.public_subnet_ids[0]
@@ -110,6 +110,16 @@ module "auth_dns_record" {
   source = "./modules/dns_record"
   zone_id = data.aws_route53_zone.main.zone_id
   name    = "auth.coinops-d.pp.ua"
+  type    = "A"
+
+  dns_name     = module.alb.dns_name
+  alb_zone_id  = module.alb.zone_id
+}
+
+module "github_app_dns_record" {
+  source = "./modules/dns_record"
+  zone_id = data.aws_route53_zone.main.zone_id
+  name    = "github-app.coinops-d.pp.ua"
   type    = "A"
 
   dns_name     = module.alb.dns_name
