@@ -75,7 +75,7 @@ variable "lb_listener_port" {
 
 variable "instance_id" {
   description = "ID of attached VM"
-  type = string
+  type        = string
 }
 
 variable "certificate_arn" {

@@ -1,6 +1,6 @@
 variable "zone_id" {
   description = "ID of Route 53 Hosted Zone"
-  type       = string
+  type        = string
 }
 
 variable "name" {

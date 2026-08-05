@@ -97,31 +97,31 @@ module "alb" {
 }
 
 module "app_dns_record" {
-  source = "./modules/dns_record"
+  source  = "./modules/dns_record"
   zone_id = data.aws_route53_zone.main.zone_id
   name    = "app.coinops-d.pp.ua"
   type    = "A"
 
-  dns_name     = module.alb.dns_name
-  alb_zone_id  = module.alb.zone_id
+  dns_name    = module.alb.dns_name
+  alb_zone_id = module.alb.zone_id
 }
 
 module "auth_dns_record" {
-  source = "./modules/dns_record"
+  source  = "./modules/dns_record"
   zone_id = data.aws_route53_zone.main.zone_id
   name    = "auth.coinops-d.pp.ua"
   type    = "A"
 
-  dns_name     = module.alb.dns_name
-  alb_zone_id  = module.alb.zone_id
+  dns_name    = module.alb.dns_name
+  alb_zone_id = module.alb.zone_id
 }
 
 module "github_app_dns_record" {
-  source = "./modules/dns_record"
+  source  = "./modules/dns_record"
   zone_id = data.aws_route53_zone.main.zone_id
   name    = "github-app.coinops-d.pp.ua"
   type    = "A"
 
-  dns_name     = module.alb.dns_name
-  alb_zone_id  = module.alb.zone_id
+  dns_name    = module.alb.dns_name
+  alb_zone_id = module.alb.zone_id
 }
