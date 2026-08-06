@@ -81,7 +81,7 @@ module "web_server_instance" {
 
   subnet_id          = module.network.public_subnet_ids[0]
   private_ip         = "10.10.1.111"
-  ssh_key_name       = var.ssh_key_name
+  ssh_key_name       = "internal-key"
   security_group_ids = [module.security_group.sg_ids["web_sg"], module.security_group.sg_ids["web_ssh_sg"]]
 
   ami_id = data.aws_ami.ubuntu.id
