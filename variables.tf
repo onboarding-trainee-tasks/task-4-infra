@@ -7,7 +7,7 @@ variable "packer_ansible_ami" {
 variable "allowed_cidr_blocks" {
   description = "A list of allowed CIDR blocks for the security group"
   type        = list(string)
-  default     = ["178.212.0.0/16", "195.160.0.0/16"]
+  default     = ["164.137.0.0/16"]
 }
 
 variable "aws_region" {
