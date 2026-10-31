@@ -1,7 +1,7 @@
 variable "packer_ansible_ami" {
   description = "ID of AMI created by Packer for Ansible Host"
   type        = string
-  default     = "ami-09211d793e0b1ecc1"
+  default     = "ami-0e0f673ee64db1379"
 }
 
 variable "allowed_cidr_blocks" {
@@ -19,5 +19,5 @@ variable "aws_region" {
 variable "ssh_key_name" {
   description = "Name of the SSH key pair for EC2 instances"
   type        = string
-  default     = "terraform-ssh-key"
+  default     = "t4-controller"
 }

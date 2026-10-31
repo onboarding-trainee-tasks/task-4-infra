@@ -1,6 +1,6 @@
 output "ssh_command" {
   description = "The SSH command to connect to the bastion host"
-  value       = "ssh -i C:\\Onboarding\\.ssh\\terraform-ssh-key.pem ubuntu@${module.ansible_instance.public_ip}"
+  value       = "ssh -i C:\\Onboarding\\.ssh\\t4-controller.pem ubuntu@${module.ansible_instance.public_ip}"
 }
 
 output "web_server_public_ip" {
