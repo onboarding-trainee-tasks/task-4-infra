@@ -31,9 +31,7 @@ terraform validate
 terraform apply
 ```
 
-Review replacements and the actual S3 state before applying; avoid running another task with conflicting AWS resource names at the same time. Terraform might replace the web EC2 instance when changing its AMI.
-
-The `ansible_controller_public_ip` output must be added to `outputs.tf` during the final Terraform update. Until then, find the current public IP of the EC2 instance tagged `Name=ansible` in EC2 Console.
+Review replacements and the actual S3 state before applying; avoid running another task with conflicting AWS resource names at the same time. Terraform might replace EC2 instance when changing its AMI.
 
 ## Run Ansible (on Ansible controller)
 

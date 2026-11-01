@@ -9,9 +9,7 @@ on:
       - synchronize
       - reopened
 
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -73,7 +71,7 @@ jobs:
     name: Terraform Apply
 
     if: >
-      github.event_name == 'push' &&
+      github.event_name == 'workflow_dispatch' &&
       github.ref == 'refs/heads/main'
 
     runs-on: ubuntu-latest
