@@ -4,6 +4,12 @@ variable "packer_ansible_ami" {
   default     = "ami-0e0f673ee64db1379"
 }
 
+variable "packer_web_server_ami" {
+  description = "AMI ID created by Packer for Web Server"
+  type        = string
+  default     = "ami-0a9f0b27ed01a210b"
+}
+
 variable "allowed_cidr_blocks" {
   description = "A list of allowed CIDR blocks for the security group"
   type        = list(string)

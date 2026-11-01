@@ -84,7 +84,7 @@ module "web_server_instance" {
   ssh_key_name       = "t4-web-internal"
   security_group_ids = [module.security_group.sg_ids["web_sg"], module.security_group.sg_ids["web_ssh_sg"]]
 
-  ami_id = data.aws_ami.ubuntu.id
+  ami_id = var.packer_web_server_ami
 }
 
 module "alb" {
