@@ -16,7 +16,7 @@ variable "vpc_id" {
 variable "lb_target_group_name" {
   description = "The name of the target group"
   type        = string
-  default     = "my-target-group"
+  default     = "t4-web-tg"
 }
 
 variable "health_check_path" {
