@@ -1,12 +1,12 @@
 resource "aws_lb" "this" {
-  name               = "my-alb"
+  name               = "t4-public-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = var.security_group_id
   subnets            = var.subnet_ids
 
   tags = {
-    Name = "my-alb"
+    Name = "t4-public-alb"
   }
 }
 
